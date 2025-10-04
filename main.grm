@@ -10,10 +10,21 @@ RightParam      = ')'
 MainKeyword     = 'main'
 PrintlnKeyword  = 'println!'
 Semicolon       = ';'
-               
+Number          = {Digit}+
+Identifier      = {Letter}{AlphaNumeric}*
+Equal           = '='
+LetKeyword      = 'let'
+        
+
 <Program> ::= <Statement>
            
 <Statement> ::= FunctionKeyword MainKeyword LeftParam RightParam '{' '}'
              |  FunctionKeyword MainKeyword LeftParam RightParam '{' <PrintMicro> '}'
+             |  FunctionKeyword MainKeyword LeftParam RightParam '{' <VariableDefination> '}'
              
 <PrintMicro> ::= PrintlnKeyword LeftParam RightParam Semicolon
+
+<VariableValue> ::= Number
+                 | Identifier
+                               
+<VariableDefination> ::= LetKeyword Identifier Equal <VariableValue> Semicolon  ! let x = 4;
