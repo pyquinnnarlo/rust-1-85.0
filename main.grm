@@ -1,0 +1,19 @@
+"Name" = 'Rust'
+"Author" = 'Quinn Narlo'
+         
+"Start Symbol" = <Program>
+               
+
+FunctionKeyword = 'fn'
+LeftParam       = '('
+RightParam      = ')'
+MainKeyword     = 'main'
+PrintlnKeyword  = 'println!'
+Semicolon       = ';'
+               
+<Program> ::= <Statement>
+           
+<Statement> ::= FunctionKeyword MainKeyword LeftParam RightParam '{' '}'
+             |  FunctionKeyword MainKeyword LeftParam RightParam '{' <PrintMicro> '}'
+             
+<PrintMicro> ::= PrintlnKeyword LeftParam RightParam Semicolon
