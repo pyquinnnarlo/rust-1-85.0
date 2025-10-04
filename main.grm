@@ -22,9 +22,18 @@ LetKeyword      = 'let'
              |  FunctionKeyword MainKeyword LeftParam RightParam '{' <PrintMicro> '}'
              |  FunctionKeyword MainKeyword LeftParam RightParam '{' <VariableDefination> '}'
              
-<PrintMicro> ::= PrintlnKeyword LeftParam RightParam Semicolon
+<PrintMicro> ::= PrintlnKeyword LeftParam <VariableValue> RightParam Semicolon
 
 <VariableValue> ::= Number
                  | Identifier
-                               
-<VariableDefination> ::= LetKeyword Identifier Equal <VariableValue> Semicolon  ! let x = 4;
+                 
+<AssgnmentOperator> ::= Equal
+                     |  '+='
+<MutableVariable> ::= 'mut'
+                   |
+                                                                
+<VariableDefination> ::= <Variable> <AssgnmentOperator> <VariableValue> Semicolon  ! let x = 4; or let mut x = 5;
+  
+<Variable> ::= LetKeyword Identifier
+            |  LetKeyword <MutableVariable> Identifier        
+                      
